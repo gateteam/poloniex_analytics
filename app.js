@@ -52,18 +52,14 @@ getCandles = (second, BTC, date) => {
 		let TimeStamp = new Date();
 		model[second].collection.find(query).toArray().then((res)=>{
 			console.log("Time db.find() ", (new Date() - TimeStamp)/1000, "seconds |    result.length ", res.length)
-			if(err){
-				console.log(err)
-				return reject(err);
-			}
 
 			let result = [];
 
 			for( i in res )
 				result.push([res[i].time, res[i].open, res[i].high, res[i].low, res[i].close, res[i].total]);
-
+			// console.
 			resolve(result);
 
-		});
+		}).catch(reject);
 	})
 }
